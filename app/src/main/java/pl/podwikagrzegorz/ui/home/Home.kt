@@ -91,8 +91,7 @@ private fun MemeEntry(
                 contentDescription = entry.name,
                 fadeIn = true,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(all = 10.dp)
+                    .size(310.dp)
                     .align(CenterHorizontally)
             ) {
                 CircularProgressIndicator(
@@ -103,12 +102,13 @@ private fun MemeEntry(
             Text(
                 text = entry.name,
                 fontSize = 20.sp,
+                color = MaterialTheme.colors.onSecondary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
         }
     }
-    Spacer(modifier = Modifier.height(10.dp))
+    Spacer(modifier = Modifier.height(16.dp))
 }
 
 @Composable
