@@ -1,9 +1,11 @@
 package pl.podwikagrzegorz.data.repo
 
+import dagger.hilt.android.scopes.ActivityScoped
 import pl.podwikagrzegorz.data.remote.response.MemeResponse
 import pl.podwikagrzegorz.util.Resource
 import javax.inject.Inject
 
+@ActivityScoped
 class DefaultMemeRepository @Inject constructor(
     private val api: MemeApi
 ) : MemeRepository {

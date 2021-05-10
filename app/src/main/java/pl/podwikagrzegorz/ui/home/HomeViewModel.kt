@@ -10,6 +10,7 @@ import pl.podwikagrzegorz.data.model.MemeListEntry
 import pl.podwikagrzegorz.data.model.toListEntries
 import pl.podwikagrzegorz.data.repo.MemeRepository
 import pl.podwikagrzegorz.util.Resource
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,6 +24,10 @@ class HomeViewModel @Inject constructor(
     var isLoading = mutableStateOf(false)
     var loadError = mutableStateOf("")
 
+    init {
+        loadMemes()
+    }
+
     fun loadMemes() {
         viewModelScope.launch {
             isLoading.value = true
@@ -34,11 +39,13 @@ class HomeViewModel @Inject constructor(
                     isLoading.value = false
                     loadError.value = ""
                     _memeList.value += entries
+                    Timber.i("Success = ${entries.size}")
                 }
 
                 is Resource.Error -> {
                     loadError.value = result.message!!
                     isLoading.value = false
+                    Timber.i("Failure = ${result.message}")
                 }
             }
         }
